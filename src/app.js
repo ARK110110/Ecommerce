@@ -26,7 +26,7 @@ async function loadFeaturedProducts() {
   }
 
   let featuredProducts = document.getElementById("featuredProducts")
-  let highRatingProducts = data.sort((a, b) => b.rating.rate - a.rating.rate).slice(0, -1);
+  let highRatingProducts = data.sort((a, b) => b.rating.rate - a.rating.rate).slice(0, 5);
 
   featuredProducts.innerHTML = ""
   highRatingProducts.map((index) => {
