@@ -8,7 +8,7 @@
 </head>
 <body class="bg-[#F9F9FC]">
     <!-- Navbar -->
-    <div class="flex flex-row w-full items-center justify-between px-[20px] py-[20px]">
+    <div class="flex flex-row w-full items-center justify-between px-[20px] py-[20px] border-b border-[#E8E8EA]">
       <div class="flex flex-row items-center gap-2">
         <svg id="menu-btn" onclick="document.getElementById('menu').classList.toggle('hidden')" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#00654B" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
         <a class="text-[24px] font-bold text-[#00654B] cursor-pointer tracking-[-0.25px]" href="home.html">CommerceHub</a>
@@ -29,7 +29,7 @@
       </a>
     </div>
     <!-- Detailed products -->
-     <div id="content" class="flex flex-row gap-[30px] justify-center">
+     <div id="content" class="flex flex-row gap-[30px] justify-center mt-[40px]">
         <div>
              <img src="../assets/Product.png" alt="" class="w-[650px] h-[650px] border border-[#BDC9C2] bg-[#F3F3F6] object-cover rounded-[12px]">
         </div>
@@ -71,9 +71,11 @@
                     </button>
                 </div>
             </div>
-            <div class="flex flex-col gap-[8px]">
+            <div class="flex flex-row gap-[8px]">
                 <button class="w-full py-[16px] bg-[#00654B] text-white rounded-[8px] hover:scale-95 duration-300 cursor-pointer">Buy Now</button>
-                <button class="w-full py-[16px] text-[#4547D7] rounded-[8px] bg-[#F9F9FC] border border-[#BDC9C2] hover:scale-95 duration-300 cursor-pointer">Add to Cart</button>
+                <button class="w-full py-[16px] rounded-[8px] bg-[#F9F9FC] border border-[#BDC9C2] hover:scale-95 duration-300 cursor-pointer flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#4547D7" d="M17 18a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63l-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1zm6 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7l2.78-5H6.14l2.36 5z" stroke-width="0.5" stroke="#4547D7"/></svg>  
+                </button>
             </div>
         </div>
     </div>
@@ -82,10 +84,20 @@
     </div>
     
     <div class="w-full flex justify-center">
-        <div class="w-[1140px] gap-[25px]">
+        <div class="w-[1149px] gap-[25px] flex flex-col">
             <h1 class="text-[30px] font-semibold ">Related Products</h1>
-            <div>
-                <p class="text-[24px] text-[#a3a3a3]">Coming soon...</p>
+            <div id="relatedProducts" class="flex flex-row gap-[24px] flex-wrap">
+                <!-- Card 1 -->
+                 <!-- <div onclick="location.href='detail.html?id=${}'" class="rounded-[12px] flex flex-col border border-[#BDC9C2] group hover:scale-105 duration-500 cursor-pointer">
+                    <div class="overflow-hidden rounded-t-[12px]">
+                        <img src="../assets/Product.png" alt="" class="w-[365px] h-[365px] object-cover group-hover:scale-110 duration-300">
+                    </div>
+                    <div class="px-[16px] py-[16px] gap-[6px]">
+                        <p class="text-[16px] text-[#3E4944]">Category</p>
+                        <h1 class="font-semibold text-[20px] text-[#1A1C1E]">Title</h1>
+                        <p class="font-bold text-[16px] text-[#00654B]">$99.99</p>
+                    </div>
+                 </div> -->
             </div>
         </div>    
     </div>

@@ -37,9 +37,9 @@ async function loadFeaturedProducts() {
     const price = index.price
     let shortedtitle = shortenText(title, 17)
       featuredProducts.innerHTML += `
-            <div onclick="location.href='detail.html?id=${id}'" class="w-[220.4px] h-[484px] flex flex-col items-center border border-[#E8E8EA] bg-[#FFFFFF] rounded-[12px] gap-2 duration-300 hover:scale-103 hover:border-[#c7c7c7] cursor-pointer">
-              <div class="w-full h-[216px] overflow-hidden rounded-t-[12px]">
-                <img src="${img}" alt="img.png" class="w-full h-[216px] flex rounded-t-[12px] object-cover duration-300 hover:scale-110">
+            <div onclick="location.href='detail.html?id=${id}'" class="w-[220.4px] h-[484px] flex flex-col items-center border border-[#E8E8EA] bg-[#FFFFFF] rounded-[12px] gap-2 duration-300 group hover:scale-103 hover:border-[#c7c7c7] cursor-pointer">
+              <div class="w-full h-[216px] overflow-hidden rounded-t-[12px] flex justify-center items-center">
+                <img src="${img}" alt="img.png" class="max-w-[200.4px] max-h-[200.4px] flex rounded-t-[12px] object-cover duration-300 group-hover:scale-110">
               </div>    
                   <h1 class="text-[20px] text-[#1A1C1E] font-semibold text-center" title="${title}">${shortedtitle}</h1>
                   <p class="text-[16px] text-[#3E4944] text-left w-[188.4px] flex" title="${desc}">${shortenText(desc, 70)}</p>
