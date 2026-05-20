@@ -1,18 +1,3 @@
-let data = []
-
-async function getData() {
-    let url = "https://fakestoreapi.com/products"
-    try {
-        let response = await fetch(url)
-        data = await response.json()
-    } catch(error) {
-        console.log("error jir, gk tau knp");
-        
-    }
-}
-
-getData()
-
 function shortenText(text, limit) {
   if (text.length > limit) {
     return text.substring(0, limit) + "...";
@@ -53,45 +38,122 @@ async function loadFeaturedProducts() {
 
 loadFeaturedProducts();
 
-async function loadData() { // Not used yet.
+async function loadData(category) { 
     try {
       const res = await fetch(`https://fakestoreapi.com/products`)
-      const data = await res.json()
-      let high = data.sort((a, b) => b.rating.rate - a.rating.rate);
+      const items = await res.json()
+      let high = items.sort((a, b) => b.rating.rate - a.rating.rate);
       let content = document.getElementById("cardContent")
       content.innerHTML = ""
-      data.forEach((item) => {
-        const id    = item.id
-        const img   = item.image
-        const title = item.title
-        const desc  = item.description
-        const price = item.price
-         content.innerHTML += `
-         <div onclick="location.href='../view/detail.html?id=${id}'" class="cursor-pointer rounded-[12px] w-full max-w-[280px] max-h-[542px] flex flex-col border border-[#E1E3E5] group hover:scale-101 duration-300">
-            <div class="w-full h-[278px] overflow-hidden bg-[#ffff] rounded-t-[12px] justify-center items-center flex">
-                <img src="${img}" alt="" class="object-cover max-w-[278px] max-h-[278px] scale-90 group-hover:scale-105 duration-300">
+      if (category == "all") {
+        items.forEach((item) => {
+          const id    = item.id
+          const img   = item.image
+          const title = item.title
+          const desc  = item.description
+          const price = item.price
+           content.innerHTML += `
+           <div onclick="location.href='../view/detail.html?id=${id}'" class="cursor-pointer rounded-[12px] w-full max-w-[280px] max-h-[542px] flex flex-col border border-[#E1E3E5] group hover:scale-101 duration-300">
+              <div class="w-full h-[278px] overflow-hidden bg-[#ffff] rounded-t-[12px] justify-center items-center flex">
+                  <img src="${img}" alt="" class="object-cover max-w-[278px] max-h-[278px] scale-90 group-hover:scale-105 duration-300">
+              </div>
+              <div class="px-[16px] py-[16px]">
+                  <p class="text-[#1A1C1E] pb-[4px]">${shortenText(title, 25)}</p>
+                  <p class="text-[#3E4944] pb-[16px] text-[14px]">${shortenText(desc, 30)}</p>
+                  <div class="pt-[4px] gap-[16px] flex flex-col">
+                      <p class="text-[20px] text-[#00654B] font-semibold">$${price}</p>
+                      <div class="flex flex-row gap-[8px]">
+                        <button class="cursor-pointer py-[10px] bg-[#00654B] rounded-[4px] w-full text-white hover:scale-95 duration-300">Buy Now</button>
+                        <button class="px-[10px] rounded-[4px] border border-[#00654B] hover:scale-95 duration-300 cursor-pointer flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#00654B" d="M17 18a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63l-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1zm6 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7l2.78-5H6.14l2.36 5z" stroke-width="0.5" stroke="#00654B"/></svg>  
+                        </button>
+                      </div>
+                  </div>
+              </div>
             </div>
-            <div class="px-[16px] py-[16px]">
-                <p class="text-[#1A1C1E] pb-[4px]">${shortenText(title, 25)}</p>
-                <p class="text-[#3E4944] pb-[16px] text-[14px]">${shortenText(desc, 30)}</p>
-                <div class="pt-[4px] gap-[16px] flex flex-col">
-                    <p class="text-[20px] text-[#00654B] font-semibold">$${price}</p>
-                    <div class="flex flex-row gap-[8px]">
-                      <button class="px-[10px] rounded-[4px] border border-[#00654B] hover:scale-95 duration-300 cursor-pointer flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#00654B" d="M17 18a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63l-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1zm6 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7l2.78-5H6.14l2.36 5z" stroke-width="0.5" stroke="#00654B"/></svg>  
-                      </button>
-                      <button class="cursor-pointer py-[10px] bg-[#00654B] rounded-[4px] w-full text-white hover:scale-95 duration-300">Buy Now</button>
-                    </div>
-                </div>
+           `
+        });
+      } else {
+        items.filter(item => item.category == `${category}`).map((item) => {
+          const id    = item.id
+          const img   = item.image
+          const title = item.title
+          const desc  = item.description
+          const price = item.price
+           content.innerHTML += `
+           <div onclick="location.href='../view/detail.html?id=${id}'" class="cursor-pointer rounded-[12px] w-full max-w-[280px] max-h-[542px] flex flex-col border border-[#E1E3E5] group hover:scale-101 duration-300">
+              <div class="w-full h-[278px] overflow-hidden bg-[#ffff] rounded-t-[12px] justify-center items-center flex">
+                  <img src="${img}" alt="" class="object-cover max-w-[278px] max-h-[278px] scale-90 group-hover:scale-105 duration-300">
+              </div>
+              <div class="px-[16px] py-[16px]">
+                  <p class="text-[#1A1C1E] pb-[4px]">${shortenText(title, 25)}</p>
+                  <p class="text-[#3E4944] pb-[16px] text-[14px]">${shortenText(desc, 30)}</p>
+                  <div class="pt-[4px] gap-[16px] flex flex-col">
+                      <p class="text-[20px] text-[#00654B] font-semibold">$${price}</p>
+                      <div class="flex flex-row gap-[8px]">
+                        <button class="cursor-pointer py-[10px] bg-[#00654B] rounded-[4px] w-full text-white hover:scale-95 duration-300">Buy Now</button>
+                        <button class="px-[10px] rounded-[4px] border border-[#00654B] hover:scale-95 duration-300 cursor-pointer flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#00654B" d="M17 18a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2M1 2h3.27l.94 2H20a1 1 0 0 1 1 1c0 .17-.05.34-.12.5l-3.58 6.47c-.34.61-1 1.03-1.75 1.03H8.1l-.9 1.63l-.03.12a.25.25 0 0 0 .25.25H19v2H7a2 2 0 0 1-2-2c0-.35.09-.68.24-.96l1.36-2.45L3 4H1zm6 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2c0-1.11.89-2 2-2m9-7l2.78-5H6.14l2.36 5z" stroke-width="0.5" stroke="#00654B"/></svg>  
+                        </button>
+                      </div>
+                  </div>
+              </div>
             </div>
-          </div>
-         `
-      });
+           `
+        })
+      }
     } catch (error) {
       console.log(error);
     }
 }
 
+async function loadCategory() {
+  try {
+    const items = await (await fetch(`https://fakestoreapi.com/products`)).json()
+    const categoryContent = document.getElementById("categoryContent")
+    let exsistedCategory = []
+    items.map((item) => {
+      console.log(item.category);
+      let exsisted = exsistedCategory.find(produk => produk == item.category)
+      if (!exsisted) {
+        exsistedCategory.push(item.category)
+      }
+    })
+    
+    categoryContent.innerHTML = ``
+    categoryContent.innerHTML = `
+      <button id="all" onclick="updateCategory(); loadData('all')" class="category hover:scale-105 duration-300 px-[24px] py-[8px] text-[#ffff] bg-[#0b57d0] rounded-[4px] cursor-pointer" title="all">All</button>
+    `
+    exsistedCategory.map((item) => {
+      categoryContent.innerHTML += `
+        <button id="${'`'+item+'`'}" onclick="updateCategory(); loadData${'(`'+item+'`)'}" class="category hover:scale-105 duration-300 px-[24px] py-[8px] text-[#3E4944] rounded-[4px] border border-[#BDC9C2] cursor-pointer" title="${item}">${item}</button>
+        `
+      })
+      console.log(exsistedCategory);
+    updateCategory()
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+function updateCategory() {
+  const buttons = document.querySelectorAll(".category")
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => {
+        b.classList.add("text-[#3E4944]", "border", "border-[#BDC9C2]")
+        b.classList.remove("text-[#ffff]", "bg-[#0b57d0]")
+      })
+      btn.classList.remove("text-[#3E4944]", "border", "border-[#BDC9C2]")
+      btn.classList.add("text-[#ffff]", "bg-[#0b57d0]")
+      })
+  })
+}
+  
+loadData("all")
+loadCategory()
+updateCategory()
 // {
 //     "id": 1,
 //     "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -105,5 +167,4 @@ async function loadData() { // Not used yet.
 //     }
 // }
 
-loadData()
 

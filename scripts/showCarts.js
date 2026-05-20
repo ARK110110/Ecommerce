@@ -1,10 +1,3 @@
-function shortenText(text, limit) {
-    if (text.length > limit) {
-        return text.substring(0, limit) + "...";
-    }
-    return text;
-}
-
 function formatUSD(number) {
     return new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -14,6 +7,13 @@ function formatUSD(number) {
 
 function rupiahFormat(num) {
     return `Rp. ${(num * 17598.20).toLocaleString("id-ID", {minimumFractionDigits:2, maximumFractionDigits:2})}`
+}
+
+function shortenText(text, limit) {
+    if (text.length > limit) {
+        return text.substring(0, limit) + "...";
+    }
+    return text;
 }
 
 async function showProducts() {
@@ -106,6 +106,7 @@ async function showProducts() {
             `;
     });
 }
+
 showProducts();
 
 function updateQuantity(id) {

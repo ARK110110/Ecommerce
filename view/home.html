@@ -8,7 +8,7 @@
   </head>
   <body class="bg-[#F9F9FC]">
     <!-- Navbar -->
-    <div class="flex flex-row w-full items-center justify-between px-[20px] py-[20px] border-b border-[#E8E8EA]">
+    <div class="fixed top-0 z-50 bg-[#F9F9FC] flex flex-row w-full items-center justify-between px-[20px] py-[20px] border-b border-[#E8E8EA]">
       <div class="flex flex-row items-center gap-2">
         <svg id="menu-btn" onclick="document.getElementById('menu').classList.toggle('hidden')" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#00654B" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
         <a class="text-[24px] font-bold text-[#00654B] cursor-pointer tracking-[-0.25px]" href="home.html">CommerceHub</a>
@@ -29,7 +29,7 @@
       </a>
     </div>
 
-    <div class="flex justify-center flex-col gap-6 mt-[40px]">
+    <div class="flex justify-center flex-col gap-6 mt-[131px]">
       <!-- Banner -->
        <div class=" flex justify-center">
          <div class=" w-[1160px] h-[300px] rounded-[12px] relative">
@@ -39,7 +39,7 @@
              <div class="absolute gap-2 flex flex-col pl-[24px]">
                <h1 class="text-[#D6FFEB] font-semibold text-[30px]">Shop Smart, Shop Easy</h1>
                <p class="text-[#D6FFEB] font-[16px]">Find a variety of the best products at affordable prices, directly from one place.</p>
-               <button class="w-[144px] h-[56px] bg-[#008060] text-[#D6FFEB] rounded-[8px] hover:bg-[#017558] hover:scale-95 duration-300 cursor-pointer">Explore Now</button>
+               <button onclick="location.href='products.html'" class="w-[144px] h-[56px] bg-[#008060] text-[#D6FFEB] rounded-[8px] hover:bg-[#017558] hover:scale-95 duration-300 cursor-pointer">Explore Now</button>
               </div>
             </div>
             </div>
@@ -53,7 +53,7 @@
             <p class="text-[16px] text-[#3E4944]">Top picks for your professional workspace</p>
           </div>
           <div class="flex flex-row items-center gap-[4px] cursor-pointer">
-            <a class="text-[16px] text-[#4547D7]">View all</a>
+            <a class="text-[16px] text-[#4547D7]" href="products.html">View all</a>
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="#4547D7" d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"/></svg>
           </div>
         </div>

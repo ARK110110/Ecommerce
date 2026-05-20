@@ -1,3 +1,14 @@
+function formatUSD(number) {
+    return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    }).format(number);
+}
+
+function rupiahFormat(num) {
+    return `Rp. ${(num * 17598.20).toLocaleString("id-ID", {minimumFractionDigits:2, maximumFractionDigits:2})}`
+}
+
 const content =  document.getElementById("content")
 const relatedProducts = document.getElementById("relatedProducts")
 
@@ -5,11 +16,6 @@ const Params = new URLSearchParams(window.location.search);
 const productId = Params.get("id");
 
 // let url = "https://fakestoreapi.com/products"
-
-
-function rupiahFormat(num) {
-    return `Rp. ${(num * 17598.20).toLocaleString("id-ID", {minimumFractionDigits:2, maximumFractionDigits:2})}`
-}
 
 function quantityFunc(operator) {
     const quantity = document.getElementById("quantity")
