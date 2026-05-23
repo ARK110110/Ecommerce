@@ -43,12 +43,31 @@
                     <h1 class="font-semibold text-[30px] text-[#1A1C1E]">Shop By Collection</h1>
                     <p class="text-[#3E4944]">Browse fashion, electronics, jewelry, and more.</p>
                 </div>
-                <div class="gap-[8px] flex flex-row items-center w-fit">
-                    <p class="text-[#3E4944]">Sort by:</p>
-                    <button class="gap-[10px] px-[12px] py-[4px] rounded-[4px] cursor-pointer flex flex-row justify-between items-center rounded-[4px] border border-[#BDC9C2]">
-                        <p>Rate: High to Low</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1024 1024"><path d="M0 0h1024v1024H0z" fill="none"/><path fill="#6b7280" d="M104.7 338.8a64 64 0 0 1 90.5 0L512 655.6l316.8-316.8a64 64 0 0 1 90.5 90.4l-362 362.1a64 64 0 0 1-90.5 0l-362.1-362a64 64 0 0 1 0-90.5"/></svg>
-                    </button>
+                <div class="relative w-fit">
+                    <div class="gap-[8px] flex flex-row items-center w-fit">
+                        <p class="text-[#3E4944]">Sort by:</p>
+                        <button onclick="showSortList()" class="gap-[10px] px-[12px] py-[4px] rounded-[4px] z-2 bg-[#ffff] cursor-pointer flex flex-row justify-between items-center rounded-[4px] border border-[#BDC9C2]">
+                            <p>Rate: High to Low</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1024 1024"><path d="M0 0h1024v1024H0z" fill="none"/><path fill="#6b7280" d="M104.7 338.8a64 64 0 0 1 90.5 0L512 655.6l316.8-316.8a64 64 0 0 1 90.5 90.4l-362 362.1a64 64 0 0 1-90.5 0l-362.1-362a64 64 0 0 1 0-90.5"/></svg>
+                        </button>
+                        <div id="sortList" class="flex flex-col absolute z-1 max-w-[176.7px] w-full top-full right-0 mt-[-2px] hidden">
+                            <button class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec]">
+                                <p class="text-[#3E4944] text-left">Rate: Low To High</p>
+                            </button>
+                            <button class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec]">
+                                <p class="text-[#3E4944] text-left">Price: High To Low</p>
+                            </button>
+                            <button class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec]">
+                                <p class="text-[#3E4944] text-left">Price: Low To High</p>
+                            </button>
+                            <button class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec]">
+                                <p class="text-[#3E4944] text-left">Newest Product</p>
+                            </button>
+                            <button class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec] rounded-b-[4px]">
+                                <p class="text-[#3E4944] text-left">Oldest Product</p>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
