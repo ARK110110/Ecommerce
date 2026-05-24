@@ -1,3 +1,4 @@
+
 function shortenText(text, limit) {
   if (text.length > limit) {
     return text.substring(0, limit) + "...";
@@ -26,12 +27,12 @@ async function loadFeaturedProducts() {
               <div onclick="location.href='detail.html?id=${id}'" class="w-[220.4px] h-[484px] flex flex-col items-center border border-[#E8E8EA] bg-[#FFFFFF] rounded-[12px] gap-2 duration-300 group hover:scale-103 hover:border-[#c7c7c7] cursor-pointer">
                 <div class="w-full h-[216px] overflow-hidden rounded-t-[12px] flex justify-center items-center">
                   <img src="${img}" alt="img.png" class="max-w-[200.4px] max-h-[200.4px] flex rounded-t-[12px] object-cover duration-300 group-hover:scale-110">
-                </div>    
-                    <h1 class="text-[20px] text-[#1A1C1E] font-semibold text-center" title="${title}">${shortedtitle}</h1>
-                    <p class="text-[16px] text-[#3E4944] text-left w-[188.4px] flex" title="${desc}">${shortenText(desc, 70)}</p>
+                  </div>    
+                  <h1 class="text-[20px] text-[#1A1C1E] font-semibold text-center" title="${title}">${shortedtitle}</h1>
+                  <p class="text-[16px] text-[#3E4944] text-left w-[188.4px] flex" title="${desc}">${shortenText(desc, 70)}</p>
               </div>  
-        `;
-    });
+              `;
+            });
   } catch (error) {
     console.log(error);
   }
@@ -39,24 +40,31 @@ async function loadFeaturedProducts() {
 
 loadFeaturedProducts();
 
+let currentCategory = ``
 async function loadData(category, sort) {
   try {
     const res = await fetch(`https://fakestoreapi.com/products`);
     const items = await res.json();
-    // let high = items.sort((a, b) => b.rating.rate - a.rating.rate);
+    let sortedto = [...items]
     if (sort == "highestRate") {
-      let highRate = items.sort((a, b) => b.rating.rate - a.rating.rate);
+      sortedto.sort((a, b) => b.rating.rate - a.rating.rate);
     } else if (sort == "lowestRate") {
-      let lowRate = items.sort((a, b) => a.rating.rate - b.rating.rate);
+      sortedto.sort((a, b) => a.rating.rate - b.rating.rate);
     } else if (sort == "highestPrice") {
-      let lowRate = items.sort((a, b) => b.price - a.price);
+      sortedto.sort((a, b) => b.price - a.price);
     } else if (sort == "lowestPrice") {
-      let lowRate = items.sort((a, b) => a.price - b.price);
+      sortedto.sort((a, b) => a.price - b.price);
+    } else if (sort == "newProduct") {
+      sortedto.sort((a, b) => b.id - a.id);
+    } else if (sort == "oldProduct") {
+      sortedto.sort((a, b) => a.id - b.id);
     }
+    console.log(sortedto);
+    
     let content = document.getElementById("cardContent");
     content.innerHTML = "";
     if (category == "all") {
-      items.forEach((item) => {
+      sortedto.forEach((item) => {
         const id = item.id;
         const img = item.image;
         const title = item.title;
@@ -82,9 +90,10 @@ async function loadData(category, sort) {
               </div>
             </div>
            `;
+           currentCategory = "all"
       });
     } else {
-      items
+      sortedto
         .filter((item) => item.category == `${category}`)
         .map((item) => {
           const id = item.id;
@@ -112,7 +121,7 @@ async function loadData(category, sort) {
               </div>
             </div>
            `;
-          updateSortList(`${item.category}`)
+           currentCategory = `${item.category}`
         });
     }
   } catch (error) {
@@ -156,7 +165,6 @@ function updateCategory() {
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      showSortList(btn.innerHTML)
       buttons.forEach((b) => {
         b.classList.add("text-[#3E4944]", "border", "border-[#BDC9C2]");
         b.classList.remove("text-[#ffff]", "bg-[#0b57d0]");
@@ -167,35 +175,24 @@ function updateCategory() {
   });
 }
 
-function showSortList() {
-  const sortList = document.getElementById("sortList")
-  sortList.classList.toggle("hidden");
-}
-
-function updateSortList(currentCtgry) {
-  const sortList = document.getElementById("sortList")
-  sortList.innerHTML = `
-    <button onclick="loadData('${currentCtgry}', 'lowestRate')" class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec]">
-        <p class="text-[#3E4944] text-left">Rate: Low To High</p>
-    </button>
-    <button onclick="loadData('${currentCtgry}', 'highestPrice')" class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec]">
-        <p class="text-[#3E4944] text-left">Price: High To Low</p>
-    </button>
-    <button onclick="loadData('${currentCtgry}', 'lowestPrice')" class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec]">
-        <p class="text-[#3E4944] text-left">Price: Low To High</p>
-    </button>
-    <button onclick="loadData('${currentCtgry}')" class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec]">
-        <p class="text-[#3E4944] text-left">Newest Product</p>
-    </button>
-    <button onclick="loadData('${currentCtgry}')" class="gap-[10px] px-[12px] py-[4px] bg-[#ffff] cursor-pointer flex flex-row justify-between items-center border-x border-b border-[#BDC9C2] hover:bg-[#ececec] rounded-b-[4px]">
-        <p class="text-[#3E4944] text-left">Oldest Product</p>
-    </button>
-    `
-}
-
-
+sortProduct.addEventListener("change", (i) => {
+  const selected = i.target.value
+  if (selected == "highestRate") {;
+      loadData(`${currentCategory}`, "highestRate")
+    } else if (selected == "lowestRate") {
+      loadData(`${currentCategory}`, "lowestRate")
+    } else if (selected == "highestPrice") {
+      loadData(`${currentCategory}`, "highestPrice")
+    } else if (selected == "lowestPrice") {
+      loadData(`${currentCategory}`, "lowestPrice")
+    } else if (selected == "newProduct") {
+      loadData(`${currentCategory}`, "newProduct")
+    } else if (selected == "oldProduct") {
+      loadData(`${currentCategory}`, "oldProduct")
+    }
+})
 loadData("all", "highestRate");
-updateSortList("all")
+
 loadCategory();
 updateCategory();
 // {

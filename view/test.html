@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShopifyCommerce | Products</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dadadc",
+                        "surface": "#f9f9fc",
+                        "on-secondary-container": "#fffbff",
+                        "on-secondary-fixed": "#06006c",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f3f6",
+                        "outline-variant": "#bdc9c2",
+                        "surface-tint": "#006c50",
+                        "tertiary-fixed-dim": "#ffb4ab",
+                        "primary-fixed": "#92f6cf",
+                        "tertiary-container": "#ae564d",
+                        "surface-container-highest": "#e2e2e5",
+                        "surface-container-high": "#e8e8ea",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#6e7a73",
+                        "on-secondary-fixed-variant": "#2d2cc2",
+                        "on-primary-fixed": "#002116",
+                        "surface-container": "#eeeef0",
+                        "surface-variant": "#e2e2e5",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "primary-fixed-dim": "#75d9b3",
+                        "surface-bright": "#f9f9fc",
+                        "tertiary-fixed": "#ffdad6",
+                        "tertiary": "#8f3f37",
+                        "on-tertiary-fixed": "#3f0303",
+                        "on-tertiary-container": "#fff2f1",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#7a2e28",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#75d9b3",
+                        "background": "#f9f9fc",
+                        "primary": "#00654b",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "on-primary-container": "#d6ffeb",
+                        "on-background": "#1a1c1e",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#e1e0ff",
+                        "inverse-on-surface": "#f0f0f3",
+                        "secondary-container": "#5f62f1",
+                        "on-primary-fixed-variant": "#00513c",
+                        "primary-container": "#008060",
+                        "secondary": "#4547d7",
+                        "on-surface": "#1a1c1e",
+                        "on-surface-variant": "#3e4944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.8px",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "grid-gutter": "16px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "grid-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Inter"],
+                        "h2": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h1": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h3": ["20px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h1": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-md": ["13px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-card-shadow {
+            border: 1px solid #E1E3E5;
+        }
+        .product-card-shadow:hover {
+            box-shadow: 0px 4px 12px rgba(26, 28, 30, 0.08);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background selection:bg-primary-fixed">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-background border-b border-surface-container-highest dark:border-outline fixed top-0 left-0 w-full z-50 flex justify-between items-center px-md h-16">
+<div class="flex items-center gap-md">
+<button class="p-sm hover:bg-surface-container-low rounded-full transition-transform active:scale-95">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+</button>
+<h1 class="font-h3 text-h3 font-extrabold text-primary dark:text-primary-fixed">ShopifyCommerce</h1>
+</div>
+<div class="flex items-center gap-sm">
+<div class="hidden md:flex gap-md items-center mr-lg">
+<a class="text-primary dark:text-primary-fixed font-bold font-label-md" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md hover:text-primary" href="#">Categories</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-label-md hover:text-primary" href="#">Orders</a>
+</div>
+<button class="p-sm hover:bg-surface-container-low rounded-full transition-transform active:scale-95 relative">
+<span class="material-symbols-outlined text-on-surface">shopping_cart</span>
+<span class="absolute top-0 right-0 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-24 md:pb-8 max-w-[1200px] mx-auto px-md min-h-screen">
+<!-- Category Chips Section -->
+<section class="py-md overflow-x-auto no-scrollbar flex items-center gap-sm sticky top-16 bg-background z-40">
+<button class="px-lg py-sm rounded-lg bg-secondary-container text-on-secondary-container font-label-md whitespace-nowrap active:scale-95 transition-all">All</button>
+<button class="px-lg py-sm rounded-lg border border-outline-variant text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-container-low active:scale-95 transition-all">Electronics</button>
+<button class="px-lg py-sm rounded-lg border border-outline-variant text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-container-low active:scale-95 transition-all">Jewelery</button>
+<button class="px-lg py-sm rounded-lg border border-outline-variant text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-container-low active:scale-95 transition-all">Men's Clothing</button>
+<button class="px-lg py-sm rounded-lg border border-outline-variant text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-container-low active:scale-95 transition-all">Women's Clothing</button>
+
+
+</section>
+<!-- Product Grid Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-lg mt-md">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">Premium Collections</h2>
+<p class="font-body-md text-on-surface-variant mt-1">Discover our hand-picked selection for your lifestyle.</p>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label-sm text-on-surface-variant">Sort by:</span>
+<select class="bg-surface border-outline-variant rounded-lg font-label-md text-on-surface py-1 pr-8 focus:ring-secondary focus:border-secondary transition-all">
+<option>Featured</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest Arrivals</option>
+</select>
+</div>
+</div>
+
+
+
+<!-- Asymmetric Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-grid-gutter">
+<!-- Product Card 1 -->
+<div class="bg-white rounded-xl product-card-shadow overflow-hidden flex flex-col group h-full">
+<div class="aspect-square relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional studio product shot of high-end wireless headphones in a sleek charcoal finish, set against a clean minimalist light grey background. The lighting is crisp and sophisticated, highlighting the premium texture of the leather and metallic accents. The overall aesthetic is modern, corporate, and highly reliable, fitting a luxury electronics brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrTy2XatMepO-BEqfhjD7NEZrgda7TJJ0XBAu819AZHeiIkg1q9yNeHHTH7LwLV2BuNfW-qYy-Ii7qluj1ir0MI7cncRlLkO428RCFEM0igwYMZo3dfVHT9EFMKkThyO2U8mXZwZREt6L2FaK5LdH2QK7VuKtqyXL0CXanqtvKMCnqQO-0MRRkXASF5mFjuYQh8DgcK8gzpb_SE2JorUo1OsKvcfgnABFraLlLVZGk-dsTLgSspjWhxZiyykLSi2B8ISY6qdUT5OU"/>
+<button class="absolute top-md right-md bg-white/80 backdrop-blur-md p-xs rounded-full shadow-sm hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="font-h3 text-[16px] text-on-surface leading-tight">Elite Wireless Audio</h3>
+<span class="bg-primary-fixed text-on-primary-fixed font-label-sm px-2 py-0.5 rounded-full">New</span>
+</div>
+<p class="font-body-md text-on-surface-variant text-sm line-clamp-2 mb-md">Professional noise cancellation and 40-hour battery life for the ultimate corporate workflow.</p>
+<div class="mt-auto">
+<p class="font-h2 text-h3 text-primary mb-md">$299.00</p>
+<div class="flex flex-col gap-sm">
+<button class="w-full bg-primary-container text-white font-label-md py-2.5 rounded-lg hover:bg-primary transition-colors active:scale-95">Buy Now</button>
+<button class="w-full border border-outline-variant text-secondary font-label-md py-2.5 rounded-lg hover:bg-surface-container-low transition-colors active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white rounded-xl product-card-shadow overflow-hidden flex flex-col group h-full">
+<div class="aspect-square relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean top-down view of a modern silver digital watch on a smooth white stone surface, surrounded by minimalist desktop essentials. The lighting is bright and even, creating a high-key light mode look that emphasizes clarity and precision. The aesthetic is professional and utilitarian, reflecting industry-leading ecommerce quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl_d-4KbW-FFz5g4CTA7-cQYRkphJfuXxuzdRWczMdly6ExbKkyZcKXMANiOj2Bx9wdOIWQyzU0dHRnQHk5yfLBzBE8LiEGvdF-jT6q1DY2GbnGatE1RnfgdjTWtD0mzrlXVQNQGGCrUmuY9eiyZJUFKYvwJRyrhCFAVoN1t8CJNspwGQHJk6XCkDRqU5TysRnb6oH6iRuI4ONCnuQIgVoNGxH6IbzM4fOwAiq4Y0ezfMCYRAz1DJh-0aeWBwjdzMjdej4iWwnbw4"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<h3 class="font-h3 text-[16px] text-on-surface mb-xs">Precision Quartz Watch</h3>
+<p class="font-body-md text-on-surface-variant text-sm line-clamp-2 mb-md">Timeless silver finish with sapphire glass. Built for reliability and enduring style.</p>
+<div class="mt-auto">
+<p class="font-h2 text-h3 text-primary mb-md">$150.00</p>
+<div class="flex flex-col gap-sm">
+<button class="w-full bg-primary-container text-white font-label-md py-2.5 rounded-lg hover:bg-primary transition-colors active:scale-95">Buy Now</button>
+<button class="w-full border border-outline-variant text-secondary font-label-md py-2.5 rounded-lg hover:bg-surface-container-low transition-colors active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-white rounded-xl product-card-shadow overflow-hidden flex flex-col group h-full">
+<div class="aspect-square relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro shot of a sleek professional camera lens with intricate glass reflections, positioned on a dark textured surface. Soft lateral light highlights the premium materials and technical markings. The mood is artistic yet technological, using a palette of blacks, greys, and indigo to suggest high-end performance and professional utility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXfUSDxjh35y7Y70w5rKg09BJiktZ27Ep0Fek9jAJ_1Va6NCWtClEwF3o546tAcT7gU_nxLKkXCf-YlHHcc6SMpWccQNu_sTb6xNc9y0SbLSMlmZgTbLBKdBZin-gMUAJ-Qqzw5da_sFVaOVZe7kIBJExJgwE9PelcTi0Ctrpd2WHDXishIIuGTbOvNcPo07wmo9m-fk4_1LsKMLrUU8sO8FdgHd45hHA6EaFwq548oXbn-woJ9obQG9J2q_gML4i3h2yo9WYoX6o"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<h3 class="font-h3 text-[16px] text-on-surface mb-xs">Pro-Series Camera Lens</h3>
+<p class="font-body-md text-on-surface-variant text-sm line-clamp-2 mb-md">Unmatched clarity for commercial photography. Weather-sealed and robust design.</p>
+<div class="mt-auto">
+<p class="font-h2 text-h3 text-primary mb-md">$1,299.00</p>
+<div class="flex flex-col gap-sm">
+<button class="w-full bg-primary-container text-white font-label-md py-2.5 rounded-lg hover:bg-primary transition-colors active:scale-95">Buy Now</button>
+<button class="w-full border border-outline-variant text-secondary font-label-md py-2.5 rounded-lg hover:bg-surface-container-low transition-colors active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-white rounded-xl product-card-shadow overflow-hidden flex flex-col group h-full">
+<div class="aspect-square relative overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Two premium black cotton t-shirts neatly folded on a minimalist wooden shelf in a bright, modern clothing store. High-key natural lighting creates a fresh and clean light-mode atmosphere. The image emphasizes the quality of the fabric and the precision of the construction, conveying a sense of established trust and efficiency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP3USPZ0Mwfg5eKRWHNaZl32-rDPaJ-P-evqBZZLY2maMJ7nIpiiJD1madGob331YWH2MjFtahP3X6kYFfWE8DsQ-MHqDBNt7WAiTltRuKTWBKRrjWycQ4JgpFeYWKmfMfQzk0mpH9MyGzxXyHqfE-0tyiyagoWfM0XZem2blqcCuMP62BfWziEr1DAIkoH1FyIU835wAL-Gy6tTmIyWlFOw4G3HUM93ttTM4sXAQe0uECyK9uZliHPY_K50nz9U84yyF-yPg0hz0"/>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<h3 class="font-h3 text-[16px] text-on-surface mb-xs">Essential Cotton Tee</h3>
+<p class="font-body-md text-on-surface-variant text-sm line-clamp-2 mb-md">Heavyweight organic cotton. The foundation of a reliable and modern professional wardrobe.</p>
+<div class="mt-auto">
+<p class="font-h2 text-h3 text-primary mb-md">$45.00</p>
+<div class="flex flex-col gap-sm">
+<button class="w-full bg-primary-container text-white font-label-md py-2.5 rounded-lg hover:bg-primary transition-colors active:scale-95">Buy Now</button>
+<button class="w-full border border-outline-variant text-secondary font-label-md py-2.5 rounded-lg hover:bg-surface-container-low transition-colors active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination or Load More -->
+<div class="mt-xl flex justify-center pb-xl">
+<button class="px-xl py-md border border-outline-variant text-on-surface font-label-md rounded-lg hover:bg-surface-container-low transition-all active:scale-95">
+                Load More Products
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-sm pb-safe bg-surface dark:bg-on-background border-t border-surface-container-highest dark:border-outline md:hidden shadow-md">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-9x" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1 transition-all active:scale-9x" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="font-label-sm text-label-sm mt-1">Categories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-9x" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-sm text-label-sm mt-1">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-1 hover:text-primary transition-all active:scale-9x" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<!-- NavigationDrawer (Desktop Hidden, Toggle logic implied) -->
+<div class="fixed inset-y-0 left-0 z-[60] flex flex-col p-md bg-surface dark:bg-on-background h-full w-80 rounded-r-xl shadow-xl -translate-x-full transition-transform duration-300 ease-out md:hidden" id="drawer">
+<div class="flex flex-col p-md border-b border-surface-container-highest mb-md">
+<div class="flex items-center gap-md mb-md">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-bold">SM</div>
+<div>
+<h4 class="font-body-md font-bold text-on-surface">Store Member</h4>
+<p class="text-xs text-on-surface-variant">member@example.com</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-sm">
+<a class="flex items-center gap-md p-md text-on-surface dark:text-surface-variant hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface dark:text-surface-variant hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-body-md">Wishlist</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface dark:text-surface-variant hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md">Payments</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface dark:text-surface-variant hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface dark:text-surface-variant hover:bg-surface-container-low rounded-lg" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md">Help</span>
+</a>
+</nav>
+</div>
+</body></html>
